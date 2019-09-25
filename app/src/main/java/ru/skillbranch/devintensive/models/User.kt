@@ -1,6 +1,6 @@
-package ru.skillbranchdevintensive.models
+package ru.skillbranch.devintensive.models
 
-import ru.skillbranchdevintensive.utils.Utils
+import ru.skillbranch.devintensive.utils.Utils
 import java.util.*
 
 class User (
@@ -38,12 +38,16 @@ class User (
 
     companion object Factory{
         private var lastId : Int = -1
-        fun makeUser(fullName: String?):User{
+        fun makeUser(fullName: String?): User {
             lastId++
 
             val (f_name, l_name) = Utils.parseFullName(fullName)
 
-            return User(id = "$lastId", firstName = "$f_name", lastName = "$l_name")
+            return User(
+                id = "$lastId",
+                firstName = "$f_name",
+                lastName = "$l_name"
+            )
         }
     }
 }
