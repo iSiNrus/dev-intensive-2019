@@ -10,7 +10,7 @@ class User (
     var avatar: String?,
     var rating: Int = 0,
     var respect: Int = 0,
-    val lastVisit: Date? = null,
+    val lastVisit: Date? = Date(),
     var isOnline : Boolean = false
 ){
     constructor( id:String, firstName: String?, lastName: String?) : this(id, firstName, lastName, null)
@@ -18,7 +18,6 @@ class User (
     constructor(id: String): this(id, "John", "Conor $id")
 
     init {
-        printMe()
         println( if (firstName=="John" && lastName=="Cena")
                     "tu tu ru tuuuu!!!"
                 else "A'm Alive")
