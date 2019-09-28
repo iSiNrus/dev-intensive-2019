@@ -65,7 +65,7 @@ object Utils {
 
     fun toInitials(firstName: String?, lastName: String?): String? {
 
-       return firstName?.get(0).toString() + lastName?.get(0).toString()
+       return (firstName?.get(0).toString() + lastName?.get(0).toString()).toUpperCase()
 
     }
 }
