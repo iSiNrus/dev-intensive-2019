@@ -14,7 +14,7 @@ abstract class BaseMessage(
     companion object AbstractFactory{
         var lastId:Int = -1
         fun makeMessage(from: User?, chat: Chat, date: Date = Date(),
-                        type:String="text", payload:Any?, isIncoming: Boolean): BaseMessage {
+                        type:String="text", payload:Any?): BaseMessage {
             lastId++
             return when(type){
                 "image" -> ImageMessage(
@@ -22,16 +22,14 @@ abstract class BaseMessage(
                     from = from,
                     chat = chat,
                     date = date,
-                    image = payload as String,
-                    isIncoming = isIncoming
+                    image = payload as String
                 )
                 else -> TextMessage(
                     "$lastId",
                     from = from,
                     chat = chat,
                     date = date,
-                    text = payload as String,
-                    isIncoming = isIncoming
+                    text = payload as String
                 )
             }
         }
