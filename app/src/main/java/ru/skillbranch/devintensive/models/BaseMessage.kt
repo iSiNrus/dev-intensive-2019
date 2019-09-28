@@ -19,20 +19,20 @@ abstract class BaseMessage(
             return when(type){
                 "image" -> ImageMessage(
                     "$lastId",
-                    from,
-                    chat,
+                    from = from,
+                    chat = chat,
                     date = date,
                     image = payload as String,
                     isIncoming = isIncoming
                 )
-                    else -> TextMessage(
-                        "$lastId",
-                        from,
-                        chat,
-                        date = date,
-                        text = payload as String,
-                        isIncoming = isIncoming
-                    )
+                else -> TextMessage(
+                    "$lastId",
+                    from = from,
+                    chat = chat,
+                    date = date,
+                    text = payload as String,
+                    isIncoming = isIncoming
+                )
             }
         }
     }
