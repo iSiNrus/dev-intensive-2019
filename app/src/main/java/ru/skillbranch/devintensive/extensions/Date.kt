@@ -28,41 +28,50 @@ fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND):Date
 
 fun Date.humanizeDiff(date:Date = Date()): String {
 
-    var difTime = date.time - this.time
+    var difTime : Long = date.time - this.time
 
-    var n: Long
+    var res = ""
 
-    return when(difTime)
+    var back_time = true
+    if(difTime < 0)
+    {
+        res += "через "
+        back_time = false
+        difTime = -difTime
+    }
+
+    res += when(difTime)
     {
         in (0..1* SECOND) -> "только что"
-        in (SECOND..45* SECOND) -> "несколько секунд назад"
-        in (45* SECOND..75* SECOND) -> "минуту назад"
-        in (75* SECOND..45* MINUTE) -> "${
-            when(difTime/ MINUTE){
+        in (SECOND..45* SECOND) -> "несколько секунд"
+        in (45* SECOND..75* SECOND) -> "минуту"
+        in (75* SECOND..45* MINUTE) ->
+            when((difTime/ MINUTE) % 10 ){
                 1L -> "${difTime/ MINUTE} минуту"
                 in 2..4 -> "${difTime/ MINUTE} минуты"
                 else -> "${difTime/ MINUTE} минут"
             }
-        } назад"
-        in (45* MINUTE..75* MINUTE) -> "час назад"
-        in (75* MINUTE..22* HOUR) -> "${
-            when(difTime/ HOUR){
+
+        in (45* MINUTE..75* MINUTE) -> "час"
+        in (75* MINUTE..22* HOUR) ->
+            when((difTime/ HOUR)%10){
                 1L -> "${difTime/ HOUR} час"
                 in 2..4 -> "${difTime/ HOUR} часа"
                 else -> "${difTime/ HOUR} часов"
             }
-        } назад"
-        in (22* HOUR..26* HOUR) -> "день назад"
-        in (26* HOUR..360* DAY) -> "${
-            when(difTime/ DAY)
+        in (22* HOUR..26* HOUR) -> "день"
+        in (26* HOUR..360* DAY) ->
+            when((difTime/ DAY) % 10)
             {
                 1L -> "${difTime/ DAY} день"
                 in 2..4 -> "${difTime/ DAY} дня"
                 else -> "${difTime/ DAY} дней"
             }
-        } назад"
-        else -> "более года назад"
+        else -> "более года"
     }
+    if(back_time) res+=" назад"
+
+    return res
 }
 
 enum class TimeUnits{
