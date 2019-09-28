@@ -22,6 +22,7 @@ object Utils {
 
             var res = when(lit)
             {
+                ' '-> divider
                 'а'-> "a"
                 'б'-> "b"
                 'в'-> "v"
@@ -65,7 +66,13 @@ object Utils {
 
     fun toInitials(firstName: String?, lastName: String?): String? {
 
-       return (firstName?.get(0).toString() + lastName?.get(0).toString()).toUpperCase()
+        var f_lit = ""
+        var l_lit = ""
+
+        if(firstName!=null) f_lit = firstName.get(0).toString()
+        if(lastName!=null) l_lit = lastName.get(0).toString()
+
+       return (f_lit+l_lit).toUpperCase()
 
     }
 }
