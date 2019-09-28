@@ -69,8 +69,8 @@ object Utils {
         var f_lit = ""
         var l_lit = ""
 
-        if(firstName!="null" && firstName!=null) f_lit = firstName.get(0).toString()
-        if(lastName!="null" && lastName!=null) l_lit = lastName.get(0).toString()
+        if(firstName!="null" && firstName!=null && firstName!="") f_lit = firstName.get(0).toString()
+        if(lastName!="null" && lastName!=null && lastName!="") l_lit = lastName.get(0).toString()
         if (f_lit=="" && l_lit=="") return null
         return (f_lit+l_lit).toUpperCase()
 
