@@ -71,8 +71,8 @@ object Utils {
 
         if(firstName!="null" && firstName!=null) f_lit = firstName.get(0).toString()
         if(lastName!="null" && lastName!=null) l_lit = lastName.get(0).toString()
-
-       return (f_lit+l_lit).toUpperCase()
+        if (f_lit=="" && l_lit=="") return null
+        return (f_lit+l_lit).toUpperCase()
 
     }
 }
