@@ -66,13 +66,41 @@ object Utils {
 
     fun toInitials(firstName: String?, lastName: String?): String? {
 
-        var f_lit = ""
-        var l_lit = ""
+        /*
+        * Реализуй метод Utils.toInitials(firstName lastName) принимающий в качестве аргументов имя и фамилию пользователя
+        *  (null, пустую строку) и возвращающий строку с первыми буквами имени и фамилии
+        * в верхнем регистре (если один из аргументов null то вернуть один инициал, если оба аргумента null вернуть null)
+            Пример:
+            Utils.toInitials("john" ,"doe") //JD
+            Utils.toInitials("John", null) //J
+            Utils.toInitials(null, null) //null
+            Utils.toInitials(" ", "") //null
+            * */
+        /*"null", null, "ckjdj"*/
+        var f_name = firstName?.trim()
+        var l_name = lastName?.trim()
 
-        if(firstName!="null" && firstName!=null && firstName!="") f_lit = firstName.get(0).toString()
-        if(lastName!="null" && lastName!=null && lastName!="") l_lit = lastName.get(0).toString()
-        if (f_lit=="" && l_lit=="") return null
-        return (f_lit+l_lit).toUpperCase()
+        var res = StringBuilder()
+
+        if((f_name==null || f_name=="" || f_name=="null") && (l_name==null || l_name=="" || l_name=="null"))
+        {
+            return null
+        }
+
+        if(f_name!=null && f_name!="" && f_name!="null")
+        {
+            res.append(f_name[0].toString().toUpperCase())
+        }
+
+        if(l_name!=null && l_name!="" && l_name!="null")
+        {
+            res.append(l_name[0].toString().toUpperCase())
+        }
+
+
+        return res.toString()
+        /*
+        * возврат либо 2 буквы, либо 1 буква, либо ""*/
 
     }
 }
