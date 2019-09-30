@@ -5,6 +5,8 @@ class Bender(
     var question: Question = Question.NAME
 ){
 
+    var countErrors: Int = 0
+
     fun askQuestion(): String = when(question){
         Question.NAME -> Question.NAME.question
         Question.PROFESSION -> Question.PROFESSION.question
@@ -17,11 +19,19 @@ class Bender(
     fun listenAnswer(answer: String) : Pair<String, Triple<Int, Int, Int>>{
         return if(question.answers.contains(answer)) {
             question = question.nextQuestion()
-            "Отлично! Это правильный ответ!\n${question.question}" to status.color
+            "Отлично - ты справился\n${question.question}" to status.color
         }
         else {
             status = status.nextStatus()
-            "Это не првильный ответ\n${question.question}" to status.color
+            countErrors++
+            if(countErrors==3)
+            {
+                countErrors = 0
+                question = Question.NAME
+                status = Status.NORMAL
+                "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            }
+            "Это непрвильный ответ\n${question.question}" to status.color
         }
     }
 
