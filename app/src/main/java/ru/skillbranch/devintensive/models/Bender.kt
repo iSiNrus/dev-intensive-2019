@@ -24,7 +24,7 @@ class Bender(
         else {
             status = status.nextStatus()
             countErrors++
-            if(countErrors==3)
+            if(countErrors==4)
             {
                 countErrors = 0
                 question = Question.NAME
